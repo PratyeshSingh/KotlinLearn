@@ -1,5 +1,6 @@
 package book.com.kotlinlearn
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
@@ -16,19 +17,19 @@ import book.com.kotlinlearn.view.MainActivityView
 
 class MainActivity : AppCompatActivity(), MainActivityView, OnBottomReachedListener, SearchView.OnQueryTextListener {
 
-    protected var query: String? = ""
-    internal val QUERY = "QUERY"
+    var query: String? = ""
+    private val QUERY = "QUERY"
 
-    protected var mRecyclerView: RecyclerView? = null
+    var mRecyclerView: RecyclerView? = null
 
-    protected var mMyAdapter: MyAdapter? = null
-    protected var progressBar: ProgressBar? = null
-    protected var simpleSearchView: SearchView? = null
+    var mMyAdapter: MyAdapter? = null
+    var progressBar: ProgressBar? = null
+    var simpleSearchView: SearchView? = null
 
-    protected var currentPage: Int = 0
-    protected var totalPages: Int = 0
-    protected var reloadOnTextSearch: Boolean = false
-    protected var scrolledPosition: Int = 0
+    var currentPage: Int = 0
+    var totalPages: Int = 0
+    var reloadOnTextSearch: Boolean = false
+    var scrolledPosition: Int = 0
 
     var mMainActivityPresenter: MainActivityPresenter? = null
 
@@ -120,6 +121,10 @@ class MainActivity : AppCompatActivity(), MainActivityView, OnBottomReachedListe
 
     override fun networkFailed() {
         hideProgressBar()
-        Toast.makeText(this, "Internet Connection FAiled \n Try Again later", Toast.LENGTH_LONG).show()
+        showToast(this, "Internet Connection FAiled \n Try Again later")
+    }
+
+    fun showToast(context: Context, msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
     }
 }

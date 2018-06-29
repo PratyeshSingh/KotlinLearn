@@ -6,8 +6,8 @@ import book.com.kotlinlearn.util.UrlUtils
 import book.com.kotlinlearn.view.MainActivityView
 
 class MainActivityPresenter constructor(mainActivityView: MainActivityView) : MyAsyncTask.MyAsyncTaskListener {
-    private var mMainActivityView: MainActivityView? = null
-    private var mMyAsyncTask: MyAsyncTask? = null
+    internal var mMainActivityView: MainActivityView? = null
+    internal var mMyAsyncTask: MyAsyncTask? = null
 
     init {
         mMainActivityView = mainActivityView

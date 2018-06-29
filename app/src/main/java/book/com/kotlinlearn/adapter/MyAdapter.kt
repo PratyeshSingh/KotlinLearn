@@ -51,7 +51,7 @@ class MyAdapter constructor(dataModelList: ArrayList<ImageData>) : RecyclerView.
         }
     }
 
-    inner class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var image: ImageView
 
         init {

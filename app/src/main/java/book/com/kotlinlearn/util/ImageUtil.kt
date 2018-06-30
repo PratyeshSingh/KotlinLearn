@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso
 import com.squareup.picasso.RequestCreator
 import java.lang.ref.WeakReference
 
-class ImageUtil(context: Context) {
+class ImageUtil private constructor(context: Context) {
 
     private val TAG: String = ImageUtil::class.java.simpleName
     private val PICASSO_DISK_CACHE_SIZE = 1024 * 1024 * 30; // Size in bytes (30 MB)

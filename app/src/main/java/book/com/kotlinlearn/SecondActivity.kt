@@ -6,10 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import book.com.kotlinlearn.customview.BottomContainer
 
 class SecondActivity : AppCompatActivity() {
 
     lateinit var second_textView: TextView
+    lateinit var bottomContainer: BottomContainer
     var count: Int = 0
     lateinit var title: String
 
@@ -17,16 +19,17 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
+        bottomContainer = findViewById(R.id.bottomContainer)
         second_textView = findViewById(R.id.second_textView)
 
-        initArguments()
-        second_textView.text = "${second_textView.text}$title  $count"
+        //initArguments()
+//        second_textView.text = "${second_textView.text}$title  $count"
 //        second_textView.text = second_textView.text.toString() + title +"  "+ count
 //        Log.d("SecondActivity", second_textView.text)
     }
 
     private fun initArguments() {
-        val bundle : Bundle = intent.extras
+        val bundle: Bundle = intent.extras
         title = bundle.getString(TITLE)
         count = bundle.getInt(COUNT)
     }

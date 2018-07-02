@@ -89,15 +89,11 @@ class MainActivityTest {
 
     @Test
     fun setUiOnTaskCompleted() {
-        val responseDetails = ResponseDetails()
-        val mPhoto = Photo()
         val dataModelList = ArrayList<ImageData>()
-        val imageData = ImageData()
-        imageData.imageUrl = URL
+        val imageData = ImageData(URL)
         dataModelList.add(imageData)
-        mPhoto.photo = dataModelList
-        responseDetails.photos = mPhoto
-
+        val mPhoto = Photo(dataModelList,0,0,100,10)
+        val responseDetails = ResponseDetails(mPhoto,"200")
         spyMainActivity.setUiOnTaskCompleted(responseDetails)
         verify(spyMainActivity.mMyAdapter, times(1))?.updateList(dataModelList)
         verify(spyMainActivity.mRecyclerView, times(1))?.scrollToPosition(anyInt())

@@ -30,8 +30,7 @@ class MyAdapterTest {
     @Before
     fun setUp() {
         dataModelList = ArrayList();
-        val imageModel = ImageData();
-        imageModel.imageUrl = URL
+        val imageModel = ImageData(URL);
         dataModelList.add(imageModel);
         mMyAdapter = MyAdapter(dataModelList);
         assertNotNull(mMyAdapter);
@@ -40,8 +39,7 @@ class MyAdapterTest {
     @Test
     fun updateList() {
         val dataList = java.util.ArrayList<ImageData>()
-        val imageModel = ImageData();
-        imageModel.imageUrl = URL
+        val imageModel = ImageData(URL);
         dataList.add(imageModel)
         val spyMyAdapter = PowerMockito.spy(mMyAdapter)
 

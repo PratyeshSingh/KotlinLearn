@@ -69,14 +69,11 @@ class MainActivityPresenterTest {
 
     @Test
     fun onTaskCompleted() {
-        val responseDetails = ResponseDetails()
-        val mPhoto = Photo()
         val dataModelList = ArrayList<ImageData>()
-        val imageData = ImageData()
-        imageData.imageUrl = URL
+        val imageData = ImageData(URL)
         dataModelList.add(imageData)
-        mPhoto.photo = dataModelList
-        responseDetails.photos = mPhoto
+        val mPhoto = Photo(dataModelList,0,0,100,10)
+        val responseDetails = ResponseDetails(mPhoto,"200")
 
         mMainActivityPresenter?.onTaskCompleted(responseDetails)
         verify(mMainActivityPresenter?.mMainActivityView, times(1))?.hideProgressBar()

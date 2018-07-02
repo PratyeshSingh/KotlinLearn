@@ -69,6 +69,7 @@ class ImageUtil private constructor(context: Context) {
             instances = ImageUtil(context)
         }
 
+//        @JvmStatic
         fun getInstance(): ImageUtil {
             return instances;
         }

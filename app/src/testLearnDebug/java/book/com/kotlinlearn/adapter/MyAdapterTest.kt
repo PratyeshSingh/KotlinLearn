@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import book.com.kotlinlearn.OnBottomReachedListener
 import book.com.kotlinlearn.R
 import book.com.kotlinlearn.model.ImageData
 import book.com.kotlinlearn.util.ImageUtil
@@ -84,25 +85,23 @@ class MyAdapterTest {
 
     @Test
     fun onBindViewHolder() {
-//        PowerMockito.mockStatic(ImageUtil::class.java)
-//        val context = PowerMockito.mock(Context::class.java)
-//        PowerMockito.`when`(ImageUtil::class.java.simpleName).thenReturn("ImageUtil")
-//        ImageUtil.init(context)
-//        val mockImageUtil = PowerMockito.mock(ImageUtil::class.java)
-//
-//        PowerMockito.whenNew<ImageUtil>("book.com.kotlinlearn.util.ImageUtil")
-//                .withArguments(context).thenReturn(mockImageUtil)
-//
-////        PowerMockito.`when`(mockImageUtil::class.java.simpleName).thenReturn("ImageUtil")
-////        Mockito.`when`(ImageUtil.getInstance()).thenReturn(mockImageUtil)
-//        PowerMockito.doNothing().`when`(mockImageUtil).loadImage(Mockito.anyString(), Mockito.any(ImageView::class.java))
-//
-//        val mockBaseViewHolder = PowerMockito.mock(MyAdapter.BaseViewHolder::class.java)
-//        mMyAdapter?.onBindViewHolder(mockBaseViewHolder, 0)
-//
-//        PowerMockito.verifyStatic(Mockito.times(1))
-//        ImageUtil.getInstance()
-//
-//        Mockito.verify(mockImageUtil, Mockito.times(1)).loadImage(Mockito.anyString(), Mockito.any(ImageView::class.java))
+        val spyMyAdapter = PowerMockito.spy(mMyAdapter)
+
+        val mockBaseViewHolder = PowerMockito.mock(MyAdapter.BaseViewHolder::class.java)
+        val imageView = PowerMockito.mock(ImageView::class.java)
+        PowerMockito.doReturn(imageView).`when`(mockBaseViewHolder).image
+
+        val mOnBottomReachedListener = PowerMockito.mock(OnBottomReachedListener::class.java)
+        spyMyAdapter!!.onBottomReachedListener = mOnBottomReachedListener
+
+        val imageData = ImageData(URL)
+        PowerMockito.doNothing().`when`(spyMyAdapter)?.setImage(imageData, mockBaseViewHolder)
+        PowerMockito.doReturn(imageData).`when`(spyMyAdapter)?.getItem(0)
+
+        spyMyAdapter.onBindViewHolder(mockBaseViewHolder, 0)
+
+        Mockito.verify(spyMyAdapter, Mockito.times(1)).getItem(0)
+        Mockito.verify(spyMyAdapter, Mockito.times(1)).setImage(imageData, mockBaseViewHolder)
+        Mockito.verify(mOnBottomReachedListener, Mockito.times(1)).onBottomReached(0);
     }
 }

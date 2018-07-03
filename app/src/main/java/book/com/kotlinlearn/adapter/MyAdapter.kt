@@ -45,10 +45,14 @@ class MyAdapter constructor(dataModelList: ArrayList<ImageData>) : RecyclerView.
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val dataModel = getItem(position)
-        ImageUtil.getInstance().loadImage(dataModel.imageUrl, holder.image)
+        setImage(dataModel, holder)
         if (position == itemCount - 1) {
             onBottomReachedListener?.onBottomReached(position)
         }
+    }
+
+    internal fun setImage(dataModel: ImageData, holder: BaseViewHolder) {
+        ImageUtil.getInstance().loadImage(dataModel.imageUrl, holder.image)
     }
 
     inner class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

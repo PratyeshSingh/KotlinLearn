@@ -1,11 +1,14 @@
 package book.com.kotlinlearn
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -49,6 +52,23 @@ class MainActivity : AppCompatActivity(), MainActivityView, OnBottomReachedListe
 
         val mLayoutManager = GridLayoutManager(this, 3);
         mRecyclerView?.layoutManager = mLayoutManager
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when (item?.itemId) {
+            R.id.second_activity -> {
+                val intent: Intent = SecondActivity.getInstance(this, 1, "Second Activity")
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onQueryTextSubmit(typedQuery: String): Boolean {

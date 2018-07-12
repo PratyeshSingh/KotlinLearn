@@ -34,7 +34,8 @@ class BottomContainer(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
 
     init {
         val view: View = inflate(context, R.layout.customview_bottom_container, this)
-        unbinder = ButterKnife.bind(this, view)
+//        unbinder = ButterKnife.bind(this, view)
+        unbinder = ButterKnife.bind(view)
     }
 
     override fun onDetachedFromWindow() {

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.TextView
 import book.com.kotlinlearn.customview.BottomContainer
+import book.com.kotlinlearn.services.ForegroundIntentService
 import book.com.kotlinlearn.services.ForegroundService
 
 
@@ -59,9 +60,17 @@ class SecondActivity : AppCompatActivity() {
     }
 
     private fun buttonClicked() {
+        // service
         val service = Intent(this, ForegroundService::class.java)
-        startForegroundService(service)
-//        startService(service)
+//        startForegroundService(service)
+        startService(service)
+
+
+        // intent service
+//        val service = Intent(this, ForegroundIntentService::class.java)
+//        startForegroundService(service)
+////        startService(service)
+
     }
 
 }

@@ -24,6 +24,7 @@
         <activity android:name=".SecondActivity"/>
 
         <service android:name=".services.ForegroundService" />
+        <service android:name=".services.ForegroundIntentService" />
     </application>
 
 </manifest>

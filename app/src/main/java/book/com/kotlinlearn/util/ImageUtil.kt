@@ -4,8 +4,8 @@ import android.content.Context
 import android.text.TextUtils
 import android.util.Log
 import android.widget.ImageView
-import com.jakewharton.picasso.OkHttp3Downloader
 import com.squareup.picasso.LruCache
+import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.RequestCreator
 import java.lang.ref.WeakReference
@@ -37,12 +37,12 @@ class ImageUtil private constructor(context: Context) {
                 singletonBuilt = true;
             }
         }
-        return Picasso.with(ctx);
+        return Picasso.get()
     }
 
     private fun setUpDownloader(builder: Picasso.Builder, ctx: Context) {
         // Use OkHttp as downloader
-        val downloader = OkHttp3Downloader(ctx);
+        val downloader = OkHttp3Downloader(ctx)
         // Create memory cache
         val memoryCache = LruCache(PICASSO_DISK_CACHE_SIZE)
         builder.downloader(downloader).memoryCache(memoryCache)
